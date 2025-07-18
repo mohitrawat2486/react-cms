@@ -1,0 +1,41 @@
+import { Outlet } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/layout')({
+  component: Layout,
+})
+
+function Layout() {
+  const userName = 'Mohit Rawat' // You can replace this with actual user state later
+
+  return (
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white shadow-md p-4">
+        <h2 className="text-lg font-bold mb-4">Menu</h2>
+        <ul className="space-y-2">
+          <li>
+            <a href="/layout/dashboard" className="text-blue-600 hover:underline">
+              Dashboard
+            </a>
+          </li>
+          {/* Add more nav links here */}
+        </ul>
+      </aside>
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col">
+        {/* Navbar */}
+        <header className="bg-white shadow p-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold">My CMS</h1>
+          <span className="text-gray-600">Welcome, {userName}</span>
+        </header>
+
+        {/* Page content */}
+        <main className="p-6 flex-1">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  )
+}
